@@ -1,16 +1,8 @@
-import add
-import show
-import update
-import delete
+# from oop import Chat
 
-add_task_response = add.add_task("Sleep")
-print(add_task_response)
+# chat_with_abena = Chat()
+# print(chat_with_abena.save())
 
-show_tasks_response = show.show_tasks()
-print(show_tasks_response)
-
-update_task_response = update.update_task("Sleep", "Wake Up")
-print(update_task_response)
-
-delete_task_response = delete.delete_task("Wake Up")
-print(delete_task_response)
+names = ("Ama", "Kofi", "Aba", "Ekua")
+for name in names:
+    print(f"{name}")
