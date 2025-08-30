@@ -16,7 +16,14 @@ A simple task manager GUI application built with Python, tkinter, and MongoDB.
    cd <repository-directory>
    ```
 
-2. **Install MongoDB (for Ubuntu 24.04):**
+2. **Create and activate a virtual environment:**
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. **Install MongoDB (for Ubuntu 24.04):**
 
    ```bash
    sudo apt-get update
@@ -29,19 +36,19 @@ A simple task manager GUI application built with Python, tkinter, and MongoDB.
 
    For other operating systems, please follow the official MongoDB installation instructions.
 
-3. **Start the MongoDB service:**
+4. **Start the MongoDB service:**
 
    ```bash
    sudo systemctl start mongod
    ```
 
-4. **Install Python dependencies:**
+5. **Install Python dependencies:**
 
    ```bash
    pip install -r requirements.txt
    ```
 
-5. **Create a `.env` file:**
+6. **Create a `.env` file:**
 
    Copy the `.env.example` file to `.env`:
 
