@@ -71,14 +71,18 @@ xvfb-run python3 main.py
 
 ## Screenshots
 
-### After adding 5 tasks
+### All tasks screen
 
-![After adding tasks](add_screenshot.png)
+![All tasks screen](screenshots/all_tasks_screenshot.png)
 
-### After editing a task
+### Add task screen
 
-![After editing a task](edit_screenshot.png)
+![Add task screen](screenshots/add_task_screenshot.png)
 
-### After deleting a task
+### Edit task screen
 
-![After deleting a task](delete_screenshot.png)
+![Edit task screen](screenshots/edit_task_screenshot.png)
+
+### Delete task screen
+
+![Delete task screen](screenshots/delete_task_screenshot.png)
