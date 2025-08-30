@@ -90,6 +90,6 @@ xvfb-run python3 main.py
 
 ![Edit task screen](screenshots/edit_task_screenshot.png)
 
-### Delete task screen
+### No tasks screen
 
-![Delete task screen](screenshots/delete_task_screenshot.png)
+![No tasks screen](screenshots/no_tasks_screenshot.png)

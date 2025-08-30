@@ -3,6 +3,7 @@ from tkinter import messagebox
 from functools import partial
 import commands
 import customtkinter
+from PIL import Image, ImageTk
 
 def handle_update(id, title, app):
     if not title:
@@ -106,27 +107,47 @@ def show_all_tasks_frame(app):
         text="Add Task",
         command=lambda: show_add_task_frame(app))
     add_btn.grid(row=0, column=1, pady=(5,10), padx=(0,5), sticky="ew", ipadx=20, ipady=5)
-    
-    tasks_frame = customtkinter.CTkScrollableFrame(master=frame)
-    tasks_frame.grid(row=1, column=0, sticky="nsew", columnspan=3, padx=10, pady=(5,10))
-    tasks_frame.grid_rowconfigure(0, weight=1)
-    tasks_frame.grid_columnconfigure(0, weight=1)
 
     tasks = commands.get_tasks().to_list()
-    for task in tasks:
-        checkbtn = tk.Checkbutton(master=tasks_frame, text=task["title"], anchor="w")
-        checkbtn.grid(row=tasks.index(task), column=0, sticky="ew", padx=(0, 20))
+    if len(tasks):
+        tasks_frame = customtkinter.CTkScrollableFrame(master=frame)
+        tasks_frame.grid(row=1, column=0, sticky="nsew", columnspan=3, padx=10, pady=(5,10))
+        tasks_frame.grid_rowconfigure(0, weight=1)
+        tasks_frame.grid_columnconfigure(0, weight=1)
+        
+        for task in tasks:
+            checkbtn = tk.Checkbutton(master=tasks_frame, text=task["title"], anchor="w")
+            checkbtn.grid(row=tasks.index(task), column=0, sticky="ew", padx=(0, 20))
 
-        edit_btn = tk.Button(
-            master=tasks_frame,
-            text="Edit",
-            command=partial(show_edit_task_frame, task, app))
-        edit_btn.grid(row=tasks.index(task), column=1, sticky="nsew")
+            edit_btn = tk.Button(
+                master=tasks_frame,
+                text="Edit",
+                command=partial(show_edit_task_frame, task, app))
+            edit_btn.grid(row=tasks.index(task), column=1, sticky="nsew")
 
-        delete_btn = tk.Button(
-            master=tasks_frame,
-            text="Delete",
-            command=partial(handle_delete, task["_id"], app))
-        delete_btn.grid(row=tasks.index(task), column=2, sticky="nsew")
+            delete_btn = tk.Button(
+                master=tasks_frame,
+                text="Delete",
+                command=partial(handle_delete, task["_id"], app))
+            delete_btn.grid(row=tasks.index(task), column=2, sticky="nsew")
+    else:
+        not_found_frame = customtkinter.CTkFrame(master=frame)
+        not_found_frame.grid(row=1, column=0, sticky="nsew", columnspan=3, padx=10, pady=(5,10))
+        not_found_frame.grid_rowconfigure(0, weight=1)
+        not_found_frame.grid_columnconfigure(0, weight=1)
+
+        not_found_image = ImageTk.PhotoImage(
+            image=Image.open("images/undraw_page-not-found_6wni.png")
+            .resize(
+                size=(
+                    not_found_frame.winfo_screenmmwidth(),
+                    not_found_frame.winfo_screenmmheight()),
+                resample=Image.Resampling.LANCZOS))
+        not_found_label = tk.Label(
+            master=not_found_frame,
+            image=not_found_image,
+            text="No tasks found in database!")
+        not_found_label.image = not_found_image
+        not_found_label.grid(column=0, row=0, sticky="nsew")
 
     frame.tkraise()
