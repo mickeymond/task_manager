@@ -146,7 +146,8 @@ def show_all_tasks_frame(app):
         not_found_label = tk.Label(
             master=not_found_frame,
             image=not_found_image,
-            text="No tasks found in database!")
+            text="No tasks found in database!",
+            background="white")
         not_found_label.image = not_found_image
         not_found_label.grid(column=0, row=0, sticky="nsew")
 
